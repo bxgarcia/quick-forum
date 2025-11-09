@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>QuickForum</title>
+  <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+  <div class='app'>
+    <h1>QuickForum</h1>
+
+    <!-- Auth (login/register) -->
+    <div id='authView'>
+      <div class='card'>
+        <h2>Login</h2>
+        <input id='loginUser' placeholder='username' />
+        <input id='loginPass' type='password' placeholder='password' />
+        <button id='btnLogin'>Login</button>
+        <p class='muted'>No account? <a href='#' id='goRegister'>Register</a></p>
+        <p id='loginErr' class='err'></p>
+      </div>
+
+      <div class='card hidden' id='regCard'>
+        <h2>Register</h2>
+        <input id='regUser' placeholder='username' />
+        <input id='regPass' type='password' placeholder='password' />
+        <button id='btnRegister'>Create Account</button>
+        <p class='muted'>Have an account? <a href='#' id='goLogin'>Back to Login</a></p>
+        <p id='regErr' class='err'></p>
+      </div>
+    </div>
+
+    <!-- Dashboard (after login) -->
+    <div id='dashView' class='hidden'>
+      <div class='topbar'>
+        <div class='brand'>QuickForum</div>
+        <div class='right'>
+          <span id='whoami'></span>
+          <a href='#' id='logout'>Logout</a>
+        </div>
+      </div>
+
+      <div class='layout'>
+        <aside>
+          <h3>Categories</h3>
+          <ul id='catList'></ul>
+        </aside>
+        <main>
+          <div class='ask'>
+            <select id='askCat'></select>
+            <input id='askText' placeholder='Ask a question...' />
+            <button id='btnAsk'>Post</button>
+          </div>
+          <div id='placeholder'>Select a Category to view its questions</div>
+          <div id='qList'></div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src='app.js'></script>
+</body>
+</html>
