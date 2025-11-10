@@ -131,3 +131,26 @@ app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 // ----- Start Server -----
 app.listen(PORT, () => console.log('🚀 Server running on http://localhost:' + PORT));
+
+// --- DEV ONLY: Seed default categories once ---
+app.post('/api/dev/seed-categories', async (req, res) => {
+  try {
+    const existing = await Category.countDocuments();
+    if (existing > 0) {
+      return res.json({ ok: true, message: 'Categories already exist.' });
+    }
+
+    await Category.insertMany([
+      { name: 'General' },
+      { name: 'Help' },
+      { name: 'Announcements' },
+      { name: 'Off Topic' }
+    ]);
+
+    res.json({ ok: true, message: 'Seeded default categories.' });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ ok: false, message: 'Seed failed.' });
+  }
+});
+
